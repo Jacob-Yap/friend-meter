@@ -8,8 +8,6 @@ import { nanoid } from "nanoid";
 
 function App(props) {
 
-
-
   const [tasks, setTasks] = useState(props.tasks);
 
   function toggleTaskCompleted(id) {
@@ -31,12 +29,18 @@ function App(props) {
       completed={task.completed}
       key={task.id}
       toggleTaskCompleted={toggleTaskCompleted}
+      deleteTask = {deleteTask}
     />);
 
   function addTask(name) {
     const newTask = {id: `todo-${nanoid()}`, name, completed: false};
     setTasks([...tasks,newTask])
-  }
+  };
+
+  function deleteTask(id) {
+    const remainingTasks = tasks.filter((task) => id !== task.id);
+    setTasks(remainingTasks);
+  };
 
   const tasksNoun = taskList.length !== 1 ? "tasks" : "task";
   const headingText = `${taskList.length} ${tasksNoun} remaining`;
