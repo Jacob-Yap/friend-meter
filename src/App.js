@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import Todo from "./components/Todo";
 import "./App.css";
@@ -5,7 +6,9 @@ import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 
 function App(props) {
-  const taskList = props.tasks?.map((task) =>
+  const [tasks, setTasks] = useState(props.tasks);
+
+  const taskList = tasks.map((task) =>
     <Todo
       id={task.id}
       name={task.name}
@@ -14,7 +17,8 @@ function App(props) {
     />);
 
   function addTask(name) {
-    alert(name);
+    const newTask = {id: "id", name, completed: false};
+    setTasks([...tasks,newTask])
   }
 
   return (
