@@ -10,7 +10,15 @@ function Form(props) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    props.addTask("Say Hello!");
+    if (name === "") {
+      alert("??");
+    } else {
+      props.addTask(name);
+      setName("");
+    }
+
+
+
   }
 
     return (
